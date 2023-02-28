@@ -1,17 +1,44 @@
 import ProductItem from "./ProductItem";
 import styles from "./Products.module.css";
 
-const Products = (props) => {
+const DUMMY_ITEMS = [
+  {
+    id: "1",
+    price: 7,
+    title: `Супер товар 1`,
+    description: `Супер товар 1 с чудесным качеством 1`,
+  },
+  {
+    id: "2",
+    price: 4,
+    title: `Супер товар 2`,
+    description: `Супер товар 2 с чудесным  `,
+  },
+  {
+    id: "3",
+    price: 3,
+    title: `Супер товар 3`,
+    description: `Супер товар 3 с чудесным качеством `,
+  },
+];
+
+const Products = props => {
+  const productsItems = DUMMY_ITEMS.map(item => {
+    return (
+      <ProductItem
+        title={item.title}
+        price={item.price}
+        description={item.description}
+        key={item.id}
+        id={item.id}
+      />
+    );
+  });
+
   return (
     <section className={styles.products}>
       <h2>В нашем магазине товары самого высокого качества</h2>
-      <ul>
-        <ProductItem
-          title="Супер-Товар"
-          price={7}
-          description="Благодаря своему высокому качеству, этот товар прослужит вам очень долго."
-        />
-      </ul>
+      <ul>{productsItems}</ul>
     </section>
   );
 };

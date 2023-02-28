@@ -1,8 +1,21 @@
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../store/cart-slice";
 import Card from "../UI/Card";
 import styles from "./ProductItem.module.css";
 
-const ProductItem = (props) => {
-  const { title, price, description } = props;
+const ProductItem = props => {
+  const reducerFunction = useDispatch();
+
+  const addItemHandler = () => {
+    reducerFunction(
+      cartActions.addItem({
+        id,
+        title,
+        price,
+      })
+    );
+  };
+  const { title, price, description, id } = props;
 
   return (
     <li className={styles.item}>
@@ -13,7 +26,7 @@ const ProductItem = (props) => {
         </header>
         <p>{description}</p>
         <div className={styles.actions}>
-          <button>Добавить в Корзину</button>
+          <button onClick={addItemHandler}>Добавить в Корзину</button>
         </div>
       </Card>
     </li>
